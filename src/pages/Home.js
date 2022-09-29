@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../components/Header'
+import Series from '../components/Series'
 import Title from '../components/Title'
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
     <div>
       <Header />
       <Title text="Accueil" />
+      <Series />
     </div>
   )
 }
