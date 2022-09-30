@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Card from "./Card";
 
 const Series = () => {
   const [series, setSeries] = useState([]);
@@ -14,7 +15,9 @@ const Series = () => {
 
   return (
   <div>
-        {series && series.map(item => <p>{item.name}</p>)}
+        <ul style={{listStyleType: "none"}}>
+            {series && series.map(item => <Card key={item.id} show={item} />)}
+        </ul>
   </div>
   );
 };
