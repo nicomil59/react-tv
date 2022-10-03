@@ -5,6 +5,7 @@ import Search from "./Search";
 
 const Series = () => {
   const [series, setSeries] = useState([]);
+  const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
 
   const url = search === '' ? 
@@ -13,8 +14,14 @@ const Series = () => {
     `https://api.themoviedb.org/3/search/tv?api_key=ee5257db9bf57231392a184bbd8e9562&query=${search}&language=fr-FR`;
 
   useEffect(() => {
-    axios.get(url).then((res) => setSeries(res.data.results));
+    axios.get(url)
+      .then((res) => setSeries(res.data.results))
+      .catch(error => {
+        setError(error);
+      })
   }, [url]);
+
+  if (error) return `Error: ${error.message}`;
 
   const handleSearch = term => {
     console.log("term", term);
