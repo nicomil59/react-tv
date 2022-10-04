@@ -9,7 +9,16 @@ const Card = ( {show }) => {
   // console.log(genres_ids);
 
   const [genres, setGenres] = useState([]);
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
+  const getBookmarks = () => {
+    // récupère la liste des ids depuis le LS
+    return localStorage.hasOwnProperty('bookmarkIds') ? JSON.parse
+    (localStorage.getItem('bookmarkIds')) : [];
+  }
+
+  
+  
   useEffect(() => {
     axios.get(`https://api.themoviedb.org/3/genre/tv/list?api_key=ee5257db9bf57231392a184bbd8e9562&language=fr-FR`)
     .then((res) => {
@@ -17,11 +26,40 @@ const Card = ( {show }) => {
       // console.log(listGenres);
       // console.log(listGenres.filter(item => show.genre_ids.includes(item.id)));
       setGenres(listGenres.filter(item => genres_ids.includes(item.id)).map(genre => genre.name));
-    })
-  }, [genres_ids])
+    });
+
+    const checkBookmarked = id => {
+      const listOfIds = getBookmarks();
+  
+      if (listOfIds.includes(id)) {
+        setIsBookmarked(true);
+      }
+    }
+
+    checkBookmarked(show.id);
+  }, [genres_ids, show.id])
 
   const getTime = time => {
     return moment(time).format('L');
+  }
+
+  const handleBookmark = id => {
+    
+    console.log('handlebookmark !')
+    
+    const listOfIds = getBookmarks();
+
+    if (!isBookmarked) {
+      listOfIds.push(id);
+      setIsBookmarked(true);
+    } else {
+      const index = listOfIds.indexOf(id);
+      listOfIds.splice(index, 1);
+      setIsBookmarked(false); 
+    }
+
+    // met à jour le LS
+    localStorage.setItem('bookmarkIds', JSON.stringify(listOfIds));
   }
   
   return (
@@ -37,7 +75,7 @@ const Card = ( {show }) => {
             <h3>Synopsis</h3>
             <p className="card-synopsis">{show.overview}</p>
         </div>
-        <button className='card-btn btn'>Ajouter aux favoris</button>
+        <button onClick={() => handleBookmark(show.id)} className='card-btn btn'>{isBookmarked ? "Retirer des favoris" : "Ajouter aux favoris"}</button>
     </li>
   )
 }
