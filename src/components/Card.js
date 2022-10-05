@@ -5,8 +5,11 @@ import 'moment/locale/fr';
 
 const Card = ( {show }) => {
   
-  const genres_ids = show.genre_ids;
-  // console.log(genres_ids);
+  // console.log(show.genre_ids)
+
+  const genres_ids = show.genre_ids ? show.genre_ids : show.genres.map(genre => genre.id);
+  
+  // const genres_ids = show.genre_ids;
 
   const [genres, setGenres] = useState([]);
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -16,16 +19,14 @@ const Card = ( {show }) => {
     return localStorage.hasOwnProperty('bookmarkIds') ? JSON.parse
     (localStorage.getItem('bookmarkIds')) : [];
   }
-
-  
   
   useEffect(() => {
     axios.get(`https://api.themoviedb.org/3/genre/tv/list?api_key=ee5257db9bf57231392a184bbd8e9562&language=fr-FR`)
     .then((res) => {
       const listGenres = res.data.genres;
-      // console.log(listGenres);
-      // console.log(listGenres.filter(item => show.genre_ids.includes(item.id)));
-      setGenres(listGenres.filter(item => genres_ids.includes(item.id)).map(genre => genre.name));
+      setGenres(listGenres
+        .filter(item => genres_ids.includes(item.id))
+        .map(genre => genre.name));
     });
 
     const checkBookmarked = id => {
@@ -44,8 +45,6 @@ const Card = ( {show }) => {
   }
 
   const handleBookmark = id => {
-    
-    console.log('handlebookmark !')
     
     const listOfIds = getBookmarks();
 
@@ -68,7 +67,7 @@ const Card = ( {show }) => {
         <div className="card-content">
             <h2 className="card-title">{show.name}</h2>
             <p className='card-date'>Sortie le {getTime(show.first_air_date)}</p>
-            <p className='card-rating'>{show.vote_average}/10 ⭐️</p>
+            <p className='card-rating'>{(Math.round(show.vote_average * 10) / 10).toFixed(1)}/10 ⭐️</p>
             <ul>
               {genres && genres.map((genre, index) => <li key={index}>{genre}</li>)}
             </ul>
