@@ -36,6 +36,13 @@ const Bookmarks = () => {
     getAllObjects(bookmarkList);
     
   }, [bookmarkList]);
+
+  const deleteBookmarkFromList = (idToDelete) => {
+    console.log("id à virer", idToDelete);
+    const listOfIds = bookmarkList.filter(id => id !== idToDelete);
+    console.log('listOfIds mise à jour', listOfIds);
+    setBookmarkList(listOfIds);
+  }
   
 
   return (
@@ -43,7 +50,7 @@ const Bookmarks = () => {
       <Header />
       <Title text="Favoris ❤️" />
       <ul style={{ listStyleType: "none" }}>
-        {showObjects.length > 0 ? showObjects.map((item) => <Card key={item.id} show={item} />) : <li>Pas de favoris !</li>}
+        {showObjects.length > 0 ? showObjects.map((item) => <Card key={item.id} show={item} deleteBookmark={deleteBookmarkFromList} />) : <li>Pas de favoris !</li>}
       </ul>
     </div>
   );

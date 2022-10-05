@@ -3,7 +3,7 @@ import axios from "axios";
 import moment from 'moment';
 import 'moment/locale/fr';
 
-const Card = ( {show }) => {
+const Card = ( { show, deleteBookmark }) => {
   
   // console.log(show.genre_ids)
 
@@ -54,6 +54,7 @@ const Card = ( {show }) => {
     } else {
       const index = listOfIds.indexOf(id);
       listOfIds.splice(index, 1);
+      deleteBookmark(id);
       setIsBookmarked(false); 
     }
 
