@@ -49,6 +49,7 @@ const Bookmarks = () => {
     <div>
       <Header />
       <Title text="Favoris ❤️" />
+      <p>Vous avez {bookmarkList.length} série(s) mise(s) en favori</p>
       <ul style={{ listStyleType: "none" }}>
         {showObjects.length > 0 ? showObjects.map((item) => <Card key={item.id} show={item} deleteBookmark={deleteBookmarkFromList} />) : <li>Pas de favoris !</li>}
       </ul>
