@@ -15,7 +15,7 @@ const Bookmarks = () => {
   const [showObjects, setshowObjects] = useState([]);
 
   useEffect(() => {
-    
+
     const getShowObject = async (id) => {
       try {
         const res = await axios.get(
@@ -43,7 +43,6 @@ const Bookmarks = () => {
     console.log('listOfIds mise à jour', listOfIds);
     setBookmarkList(listOfIds);
   }
-  
 
   return (
     <div>
