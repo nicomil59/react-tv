@@ -1,0 +1,79 @@
+// Polices
+
+@font-face {
+    font-family: "font-bold";
+    src: url(../assets/SourceSansPro-Bold.ttf);
+}
+
+@font-face {
+    font-family: "font-regular";
+    src: url(../assets/SourceSansPro-Regular.ttf);
+}
+
+$font-heading: "font-bold", sans-serif;
+$font-text: "font-regular", sans-serif;
+
+// Couleurs
+
+$color-background-1: #004643;
+$color-background-2: rgb(2, 45, 43);
+$color-headline: #fffffe;
+$color-text: #abd1c6;
+$color-btn: #f9bc60;
+$color-btn-text : #001e1d;
+$white: #fff;
+
+// Mixins
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Réglages de base
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $color-background-1;
+    color: $color-text;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: $font-heading;
+}
+
+p, span {
+    font-family: $font-text;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    color: $white;
+}
+
+
+
+
+
+
+// Dimensions
+
+// $width-container: 89%;
+// $width-container-max: 1440px;
+
+// Breakpoints
+
+// $breakpoints: (
+//     tablet: 768px,
+//     desktop: 992px,
+//     larger-device: 1200px
+// );
