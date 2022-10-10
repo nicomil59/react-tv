@@ -1,0 +1,49 @@
+.navigation {
+    
+    margin-right: auto;    
+
+    ul {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        li {
+            display: flex;
+            align-items: center;
+
+            a {
+                font-weight: 700;
+                color: $color-text;
+                padding: 8px 12px;
+                border: 1px solid transparent;
+
+                &:hover {
+                    border-radius: 3px;
+                    border: 1px solid #f9bc60;
+                }
+            }
+
+            .nav-active {
+                border-radius: 3px;
+                background: #f9bc60;
+                color: #001e1d;
+
+                &:hover {
+                    color: #001e1d;
+                    cursor: default;
+                    background: #f9bc60;
+                }
+            }
+
+            
+        }
+        
+    }
+
+
+}
+
+
+
+
+

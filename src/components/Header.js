@@ -3,9 +3,9 @@ import Navigation from "./Navigation";
 
 const Header = () => {
   return (
-    <div>
+    <div className="header">
       <div className="header-container">
-        <span className="header-title">The TV App</span>
+        <span className="header-title">React TV</span>
         <Navigation />
       </div>
     </div>

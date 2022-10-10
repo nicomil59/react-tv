@@ -1,16 +1,16 @@
-import React from 'react'
-import Header from '../components/Header'
-import Series from '../components/Series'
-import Title from '../components/Title'
+import React from "react";
+import Header from "../components/Header";
+import Series from "../components/Series";
+import Title from "../components/Title";
 
 const Home = () => {
   return (
-    <div>
+    <div className="home">
       <Header />
       <Title text="Accueil" />
       <Series />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
