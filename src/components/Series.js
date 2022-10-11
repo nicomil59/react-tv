@@ -45,11 +45,11 @@ const Series = () => {
   }
 
   return (
-    <div>
+    <div className="series">
       <Search placeholder="Entrez une série" getSearch={handleSearch} />
       <div className="buttons-sort">
-        <button onClick={() => setSortOrder('top')} className="btn btn-top">Top</button>
-        <button onClick={() => setSortOrder('flop')} className="btn btn-flop">Flop</button>
+        <button onClick={() => setSortOrder('top')} className="btn btn-top">Top <i class="fa-solid fa-arrow-up"></i></button>
+        <button onClick={() => setSortOrder('flop')} className="btn btn-flop">Flop <i class="fa-sharp fa-solid fa-arrow-down"></i></button>
       </div>
       <ul style={{ listStyleType: "none" }}>
         {series.length > 0 ? series.map((item) => <Card key={item.id} show={item} />) : <li>Pas de données !</li>}
