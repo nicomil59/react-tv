@@ -65,28 +65,34 @@ const Card = ({ show, deleteBookmark }) => {
   return (
     <li
       className="card"
-      style={{ marginBottom: "30px", background: "#F7F7F7" }}
+      // style={{ marginBottom: "30px"}}
     >
-      <img
-        style={{ maxWidth: "150px", height: "auto" }}
-        className="card-img"
-        src={
-          show.poster_path
-            ? `https://image.tmdb.org/t/p/original${show.poster_path}`
-            : "./img/poster.jpg"
-        }
-        alt={`affiche de ${show.name}`}
-      />
+      <div className="card-img-container">
+        <img
+          // style={{ maxWidth: "150px", height: "auto" }}
+          className="card-img"
+          src={
+            show.poster_path
+              ? `https://image.tmdb.org/t/p/original${show.poster_path}`
+              : "./img/poster.jpg"
+          }
+          alt={`affiche de ${show.name}`}
+        />
+      </div>
       <div className="card-content">
         <h2 className="card-title">{show.name}</h2>
-        <p className="card-date">Sortie le {getTime(show.first_air_date)}</p>
-        <p className="card-rating">
-          {(Math.round(show.vote_average * 10) / 10).toFixed(1)}/10 ⭐️
-        </p>
-        <ul>
+        <p className="card-date">Sortie le : {getTime(show.first_air_date)}</p>
+        <div className="card-rating-container">
+          <p className="card-rating">
+            {(Math.round(show.vote_average * 10) / 10).toFixed(1)}/10
+          </p>
+          <i className="fa-sharp fa-solid fa-star"></i>
+        </div>
+        <ul className="card-genres">
           {genres && genres.map((genre, index) => <li key={index}>{genre}</li>)}
         </ul>
-        <h3>Synopsis</h3>
+        <h3 className="card-synopsis-title">Synopsis</h3>
+        {/* <p className="card-synopsis">{show.overview.length < 250 ? show.overview : show.overview.slice(0,250)+"..."}</p> */}
         <p className="card-synopsis">{show.overview}</p>
       </div>
       <button onClick={() => handleBookmark(show.id)} className="card-btn btn">

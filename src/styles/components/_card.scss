@@ -1,0 +1,122 @@
+.card {
+    height: 600px;
+    width: 330px;
+    // border: 1px solid yellow;
+    border-radius: 15px;
+    padding: 20px;
+
+    // color: $white;
+    background-color: $color-background-2;
+
+    h2, h3 {
+        color: $white;
+    }
+
+    .card-img-container {
+        max-width: 150px;
+        margin: 0 auto;
+        height: 40%;
+        
+        .card-img {
+            // max-width: 150px;
+            width: 100%;
+            height: auto;
+    
+            border-radius: 15px;
+            margin: 0 auto;
+        }
+    }
+
+    .card-content {
+        height: 53%;
+        margin-top: 10px;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+        // gap: 10px;
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .card-date {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .card-rating-container {
+            display: flex;
+            align-items: center;
+
+            .card-rating {
+                color: $white;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+
+            i {
+                color: rgb(255, 204, 0);
+                font-size: 0.8rem;
+                margin-left: 5px;
+            }
+        }
+        
+        .card-genres {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: #001e1d;
+            margin: 10px 0px;
+
+            li {
+                background: #abd1c6;
+                border-radius: 3px;
+                padding: 2px 5px;
+            }
+        }
+
+        .card-synopsis-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .card-synopsis {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            font-weight: 300;
+
+            text-overflow:ellipsis;
+            overflow:hidden;
+            // Addition lines for 2 line or multiline ellipsis
+            display: -webkit-box !important;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            white-space: normal;
+        }
+    }
+
+    .card-btn {
+        width: 160px;
+        margin: 0 auto;
+        padding: 8px 0;
+        display: block;
+        border: 0;
+        border-radius: 3px;
+        background-color: $color-btn;
+        color:$color-btn-text;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: $white;
+            transition: background-color 0.2s ease-in-out;
+        }
+    }
+
+}

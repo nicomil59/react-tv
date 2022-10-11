@@ -8,7 +8,7 @@
         display: flex;
         justify-content: space-between;
         gap: 15px;
-        margin: 20px 0 50px;
+        margin: 20px 0 80px;
 
         .btn {
             width: 48%;
@@ -26,6 +26,16 @@
                 transition: background-color 0.2s ease-in-out;
             }
         }
+    }
+
+    .results {
+        width: $width-container;
+        max-width: $width-container-max;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap;
     }
 }
 
