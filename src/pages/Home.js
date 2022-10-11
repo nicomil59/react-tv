@@ -7,7 +7,9 @@ const Home = () => {
   return (
     <div className="home">
       <Header />
-      <Title text="Accueil" />
+      <div style={{margin: "50px 0"}}>
+        <Title text="Recherchez votre série tv préférée" />
+      </div>
       <Series />
     </div>
   );

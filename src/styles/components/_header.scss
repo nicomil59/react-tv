@@ -1,6 +1,6 @@
 .header {
-    width: 90%;
-    max-width: 1440px;
+    width: $width-container;
+    max-width: $width-container-max;
     margin: 0 auto;
 }
 
