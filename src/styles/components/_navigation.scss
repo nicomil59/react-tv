@@ -1,6 +1,6 @@
 .navigation {
     
-    margin-right: auto;    
+    // margin-right: auto;    
 
     ul {
         display: flex;
@@ -15,23 +15,25 @@
                 font-weight: 700;
                 color: $color-text;
                 padding: 8px 12px;
-                border: 1px solid transparent;
+                transition: all 0.2s ease-in-out;
 
                 &:hover {
                     border-radius: 3px;
-                    border: 1px solid #f9bc60;
+                    background: $white;
+                    color: #001e1d;
+                    transition: all 0.2s ease-in-out;
                 }
             }
 
             .nav-active {
                 border-radius: 3px;
-                background: #f9bc60;
+                background: #abd1c6;
                 color: #001e1d;
 
                 &:hover {
                     color: #001e1d;
                     cursor: default;
-                    background: #f9bc60;
+                    background: #abd1c6;
                 }
             }
 

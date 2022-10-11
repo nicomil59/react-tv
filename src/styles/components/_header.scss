@@ -2,18 +2,21 @@
     width: $width-container;
     max-width: $width-container-max;
     margin: 0 auto;
+
+    .header-container {
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+
+        .header-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            // margin-right: auto;
+        }
+    }
 }
 
-.header-container {
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    height: 80px;
-}
 
-.header-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    margin-right: auto;
-}
+
