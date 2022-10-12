@@ -54,7 +54,9 @@ const Card = ({ show, deleteBookmark }) => {
     } else {
       const index = listOfIds.indexOf(id);
       listOfIds.splice(index, 1);
-      deleteBookmark(id);
+      if (deleteBookmark) {
+        deleteBookmark(id);
+      } else console.log('pas de deleteBookmark disponible !')
       setIsBookmarked(false);
     }
 
