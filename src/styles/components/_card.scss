@@ -108,6 +108,10 @@
         margin-top: auto;
         margin-bottom: 10px;
 
+        &.bookmarked {
+            background: #e16162;
+        }
+
         &:hover {
             background-color: $white;
             transition: background-color 0.2s ease-in-out;

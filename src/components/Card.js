@@ -97,7 +97,7 @@ const Card = ({ show, deleteBookmark }) => {
         {/* <p className="card-synopsis">{show.overview.length < 250 ? show.overview : show.overview.slice(0,250)+"..."}</p> */}
         <p className="card-synopsis">{show.overview}</p>
       </div>
-      <button onClick={() => handleBookmark(show.id)} className="card-btn btn">
+      <button onClick={() => handleBookmark(show.id)} className={(isBookmarked ? "card-btn btn bookmarked" : "card-btn btn")}>
         {isBookmarked ? "Retirer des favoris" : "Ajouter aux favoris"}
       </button>
     </li>
