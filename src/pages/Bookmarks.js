@@ -5,7 +5,6 @@ import Title from "../components/Title";
 import Card from "../components/Card";
 
 const Bookmarks = () => {
-  
   const [bookmarkList, setBookmarkList] = useState(
     localStorage.hasOwnProperty("bookmarkIds")
       ? JSON.parse(localStorage.getItem("bookmarkIds"))
@@ -15,7 +14,6 @@ const Bookmarks = () => {
   const [showObjects, setshowObjects] = useState([]);
 
   useEffect(() => {
-
     const getShowObject = async (id) => {
       try {
         const res = await axios.get(
@@ -23,7 +21,7 @@ const Bookmarks = () => {
         );
         return res.data;
       } catch (error) {
-        console.log('Erreur Appel API', error);
+        console.log("Erreur Appel API", error);
       }
     };
 
@@ -31,26 +29,39 @@ const Bookmarks = () => {
       const data = ids.map((id) => getShowObject(id));
       const objects = await Promise.all(data);
       setshowObjects(objects);
-    }
+    };
 
     getAllObjects(bookmarkList);
-    
   }, [bookmarkList]);
 
   const deleteBookmarkFromList = (idToDelete) => {
     console.log("id à virer", idToDelete);
-    const listOfIds = bookmarkList.filter(id => id !== idToDelete);
-    console.log('listOfIds mise à jour', listOfIds);
+    const listOfIds = bookmarkList.filter((id) => id !== idToDelete);
+    console.log("listOfIds mise à jour", listOfIds);
     setBookmarkList(listOfIds);
-  }
+  };
 
   return (
-    <div>
+    <div className="bookmarks">
       <Header />
       <Title text="Favoris ❤️" />
-      <p>Vous avez {bookmarkList.length} série(s) mise(s) en favori</p>
-      <ul style={{ listStyleType: "none" }}>
-        {showObjects.length > 0 ? showObjects.map((item) => <Card key={item.id} show={item} deleteBookmark={deleteBookmarkFromList} />) : <li>Pas de favoris !</li>}
+      <p className="bookmarks-counter">
+        Vous avez {bookmarkList.length} série
+        {bookmarkList.length <= 1 ? "" : "s"} mise
+        {bookmarkList.length <= 1 ? "" : "s"} en favori
+      </p>
+      <ul className="bookmarks-results">
+        {showObjects.length > 0 ? (
+          showObjects.map((item) => (
+            <Card
+              key={item.id}
+              show={item}
+              deleteBookmark={deleteBookmarkFromList}
+            />
+          ))
+        ) : (
+          <li>Pas de favoris !</li>
+        )}
       </ul>
     </div>
   );
