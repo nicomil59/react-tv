@@ -5,13 +5,17 @@ import Title from "../components/Title";
 
 const NotFound = () => {
   return (
-    <div>
+    <div className="notfound">
       <Header />
-      <Title text="Erreur 404" />
+      <h2 className="notfound-title">404</h2>
+      <p className="notfound-text">
+        Visiblement, cette page n'existe plus ou n'a jamais existé... 😮
+      </p>
       <NavLink to="/">
-        <h2>
+        <button className="btn notfound-btn">Retourner à l'accueil <i className="fa-solid fa-house"></i></button>
+        {/* <p>
           Retour à l'accueil 🏠
-        </h2>
+        </p> */}
       </NavLink>
     </div>
   );
