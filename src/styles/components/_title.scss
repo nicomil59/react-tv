@@ -3,4 +3,8 @@
     font-weight: 600;
     color: $color-headline;
     text-align: center;
+
+    @include mobile {
+        font-size: 1.3rem;
+    }
 }

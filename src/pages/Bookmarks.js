@@ -44,7 +44,9 @@ const Bookmarks = () => {
   return (
     <div className="bookmarks">
       <Header />
-      <Title text="Favoris ❤️" />
+      <div style={{margin: "25px 0"}}>
+        <Title text="Favoris ❤️" />
+      </div>
       <p className="bookmarks-counter">
         Vous avez {bookmarkList.length} série
         {bookmarkList.length <= 1 ? "" : "s"} mise

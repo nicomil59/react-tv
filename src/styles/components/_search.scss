@@ -11,4 +11,8 @@
         border-radius: 3px;
         border: 0;
     }
+
+    @include mobile {
+        width: 90%;
+    }
 }

@@ -50,10 +50,10 @@ a {
 $width-container: 89%;
 $width-container-max: 1440px;
 
-// Breakpoints
+// Media Queries
 
-// $breakpoints: (
-//     tablet: 768px,
-//     desktop: 992px,
-//     larger-device: 1200px
-// );
+@mixin mobile {
+    @media screen and (max-width: 368px) {
+      @content;
+    }
+}
