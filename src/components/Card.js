@@ -83,7 +83,7 @@ const Card = ({ show, deleteBookmark }) => {
       </div>
       <div className="card-content">
         <h2 className="card-title">{show.name}</h2>
-        <p className="card-date">Sortie le : {getTime(show.first_air_date)}</p>
+        <p className="card-date">Sortie le : {show.first_air_date ? getTime(show.first_air_date) : "date non disponible"}</p>
         <div className="card-rating-container">
           <p className="card-rating">
             {(Math.round(show.vote_average * 10) / 10).toFixed(1)}/10
@@ -91,9 +91,9 @@ const Card = ({ show, deleteBookmark }) => {
           <i className="fa-sharp fa-solid fa-star"></i>
         </div>
         <ul className="card-genres">
-          {genres && genres.map((genre, index) => <li key={index}>{genre}</li>)}
+          {genres && genres.map(genre => <li key={genre}>{genre}</li>)}
         </ul>
-        <h3 className="card-synopsis-title">Synopsis</h3>
+        {show.overview ? <h3 className="card-synopsis-title">Synopsis</h3> : ""} 
         {/* <p className="card-synopsis">{show.overview.length < 250 ? show.overview : show.overview.slice(0,250)+"..."}</p> */}
         <p className="card-synopsis">{show.overview}</p>
       </div>
