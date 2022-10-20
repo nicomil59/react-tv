@@ -82,13 +82,22 @@
             line-height: 1.6;
             font-weight: 300;
 
-            text-overflow:ellipsis;
-            overflow:hidden;
+            // text-overflow:ellipsis;
+            // overflow:hidden;
             // Addition lines for 2 line or multiline ellipsis
-            display: -webkit-box !important;
-            -webkit-line-clamp: 4;
-            -webkit-box-orient: vertical;
-            white-space: normal;
+            // display: -webkit-box !important;
+            // -webkit-line-clamp: 4;
+            // -webkit-box-orient: vertical;
+            // white-space: normal;
+
+            .card-synopsis-btn-showmore {
+                background: transparent;
+                border: 0;
+                color: inherit;
+                font-weight: 600;
+                text-decoration: underline;
+                cursor: pointer;
+            }
         }
     }
 

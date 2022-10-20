@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import moment from "moment";
 import "moment/locale/fr";
 import { GenresContext } from "../context/GenresContext";
+import Modal from "./Modal";
 
 const Card = ({ show, deleteBookmark }) => {
   const { listAllGenres } = useContext(GenresContext);
@@ -13,6 +14,8 @@ const Card = ({ show, deleteBookmark }) => {
 
   const [genres, setGenres] = useState([]);
   const [isBookmarked, setIsBookmarked] = useState(false);
+  
+  const [showModal, setShowModal] = useState(false);
 
   const getBookmarks = () => {
     // récupère la liste des ids depuis le LS
@@ -95,11 +98,14 @@ const Card = ({ show, deleteBookmark }) => {
         </ul>
         {show.overview ? <h3 className="card-synopsis-title">Synopsis</h3> : ""} 
         {/* <p className="card-synopsis">{show.overview.length < 250 ? show.overview : show.overview.slice(0,250)+"..."}</p> */}
-        <p className="card-synopsis">{show.overview}</p>
+        {/* {show.overview ? <p className="card-synopsis">{show.overview.length < 250 ? show.overview : show.overview.slice(0,250)+"..."}</p> : ""} */}
+        {/* {show.overview ? {show.overview.length < 250 ? show.overview : show.overview.slice(0,250)+"..."}  : ""} */}
+        {show.overview ? show.overview.length < 200 ? <p className="card-synopsis">{show.overview}</p> : <p className="card-synopsis">{show.overview.slice(0,200)+"..."}<button className="card-synopsis-btn-showmore" onClick={() => setShowModal(true)}>Lire la suite</button></p> : ""}
       </div>
       <button onClick={() => handleBookmark(show.id)} className={(isBookmarked ? "card-btn btn bookmarked" : "card-btn btn")}>
         {isBookmarked ? "Retirer des favoris" : "Ajouter aux favoris"}
       </button>
+      <Modal onClose={() => setShowModal(false)} showModal={showModal} show={show} />
     </li>
   );
 };
