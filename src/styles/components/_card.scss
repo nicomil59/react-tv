@@ -11,6 +11,9 @@
         color: $white;
     }
 
+    height: 640px;
+    position: relative;
+
     .card-img-container {
         
         .card-img {
@@ -114,8 +117,13 @@
         cursor: pointer;
         transition: background-color 0.2s ease-in-out;
 
-        margin-top: auto;
         margin-bottom: 10px;
+
+        // margin-top: auto;
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
 
         &.bookmarked {
             background: #e16162;

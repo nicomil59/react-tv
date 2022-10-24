@@ -100,7 +100,7 @@ const Card = ({ show, deleteBookmark }) => {
         {/* <p className="card-synopsis">{show.overview.length < 250 ? show.overview : show.overview.slice(0,250)+"..."}</p> */}
         {/* {show.overview ? <p className="card-synopsis">{show.overview.length < 250 ? show.overview : show.overview.slice(0,250)+"..."}</p> : ""} */}
         {/* {show.overview ? {show.overview.length < 250 ? show.overview : show.overview.slice(0,250)+"..."}  : ""} */}
-        {show.overview ? show.overview.length < 200 ? <p className="card-synopsis">{show.overview}</p> : <p className="card-synopsis">{show.overview.slice(0,200)+"..."}<button className="card-synopsis-btn-showmore" onClick={() => setShowModal(true)}>Lire la suite</button></p> : ""}
+        {show.overview ? show.overview.length < 200 ? <p className="card-synopsis">{show.overview}</p> : <p className="card-synopsis">{show.overview.slice(0,200)+"... "}<button className="card-synopsis-btn-showmore" onClick={() => setShowModal(true)}>Lire la suite</button></p> : ""}
       </div>
       <button onClick={() => handleBookmark(show.id)} className={(isBookmarked ? "card-btn btn bookmarked" : "card-btn btn")}>
         {isBookmarked ? "Retirer des favoris" : "Ajouter aux favoris"}
