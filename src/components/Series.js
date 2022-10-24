@@ -10,9 +10,9 @@ const Series = () => {
   const [sortOrder, setSortOrder] = useState(null);
 
   const url = search === '' ? 
-    "https://api.themoviedb.org/3/tv/popular?api_key=ee5257db9bf57231392a184bbd8e9562&language=fr-FR&page=1"
+    `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR&page=1`
     :
-    `https://api.themoviedb.org/3/search/tv?api_key=ee5257db9bf57231392a184bbd8e9562&query=${search}&language=fr-FR`;
+    `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_API_KEY}&query=${search}&language=fr-FR`;
 
   const sortSeries = (series, sortOrder) => {
     if (sortOrder === 'top') {
