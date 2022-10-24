@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
+import ReturnToTop from "../components/ReturnToTop";
 import Series from "../components/Series";
 import Title from "../components/Title";
 
@@ -11,6 +12,7 @@ const Home = () => {
         <Title text="Recherchez votre série tv préférée" />
       </div>
       <Series />
+      <ReturnToTop />
     </div>
   );
 };

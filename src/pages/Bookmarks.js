@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Title from "../components/Title";
 import Card from "../components/Card";
+import ReturnToTop from "../components/ReturnToTop";
 
 const Bookmarks = () => {
   const [bookmarkList, setBookmarkList] = useState(
@@ -65,6 +66,7 @@ const Bookmarks = () => {
           <li>Pas de favoris !</li>
         )}
       </ul>
+      <ReturnToTop />
     </div>
   );
 };

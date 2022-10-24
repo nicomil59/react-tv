@@ -2,7 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
 
-$font-text: 'Source Sans Pro', sans-serif;
+$font-text: 'Source Sans Pro',
+sans-serif;
 
 // Couleurs
 
@@ -30,6 +31,10 @@ $white: #fff;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: $color-background-1;
     font-family: $font-text;
@@ -54,6 +59,6 @@ $width-container-max: 1440px;
 
 @mixin mobile {
     @media screen and (max-width: 368px) {
-      @content;
+        @content;
     }
 }
