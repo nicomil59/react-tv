@@ -10,7 +10,7 @@ const NotFound = () => {
       <p className="notfound-text">
         Visiblement, cette page n'existe plus ou n'a jamais existé... 😮
       </p>
-      <NavLink to="/" className="btn notfound-btn">
+      <NavLink to="/react-tv" className="btn notfound-btn">
         Retourner à l'accueil<i className="fa-solid fa-house"></i>
       </NavLink>
     </div>

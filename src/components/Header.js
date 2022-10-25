@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header-container">
-        <NavLink to="/" className="header-title">React TV</NavLink>
+        <NavLink to="/react-tv" className="header-title">React TV</NavLink>
         <Navigation />
       </div>
     </div>

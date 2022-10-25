@@ -40,7 +40,7 @@ const Series = () => {
   // if (error) return `Error: ${error.message}`;
 
   const handleSearch = (term) => {
-    console.log("term", term);
+    // console.log("term", term);
     setSearch(term);
     setSortOrder(null);
   };

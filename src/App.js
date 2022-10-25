@@ -10,8 +10,8 @@ const App = () => {
     <GenresContextProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/bookmarks" element={<Bookmarks />} />
+          <Route path="/react-tv" element={<Home />} />
+          <Route path="/react-tv/bookmarks" element={<Bookmarks />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
