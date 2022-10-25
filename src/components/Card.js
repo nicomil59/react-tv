@@ -74,7 +74,7 @@ const Card = ({ show, deleteBookmark }) => {
           src={
             show.poster_path
               ? `https://image.tmdb.org/t/p/original${show.poster_path}`
-              : "./img/poster.jpg"
+              : "/react-tv/img/poster.jpg"
           }
           alt={`affiche de ${show.name}`}
         />
