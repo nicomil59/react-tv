@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-// import axios from "axios";
 import moment from "moment";
 import "moment/locale/fr";
 import { GenresContext } from "../context/GenresContext";
@@ -14,7 +13,7 @@ const Card = ({ show, deleteBookmark }) => {
 
   const [genres, setGenres] = useState([]);
   const [isBookmarked, setIsBookmarked] = useState(false);
-  
+
   const [showModal, setShowModal] = useState(false);
 
   const getBookmarks = () => {
@@ -59,22 +58,18 @@ const Card = ({ show, deleteBookmark }) => {
       listOfIds.splice(index, 1);
       if (deleteBookmark) {
         deleteBookmark(id);
-      } else console.log('pas de deleteBookmark disponible !')
+      }
       setIsBookmarked(false);
     }
 
-    // met à jour le LS
+    // met à jour le LocalStorage
     localStorage.setItem("bookmarkIds", JSON.stringify(listOfIds));
   };
 
   return (
-    <li
-      className="card"
-      // style={{ marginBottom: "30px"}}
-    >
+    <li className="card">
       <div className="card-img-container">
         <img
-          // style={{ maxWidth: "150px", height: "auto" }}
           className="card-img"
           src={
             show.poster_path
@@ -86,7 +81,12 @@ const Card = ({ show, deleteBookmark }) => {
       </div>
       <div className="card-content">
         <h2 className="card-title">{show.name}</h2>
-        <p className="card-date">Sortie le : {show.first_air_date ? getTime(show.first_air_date) : "date non disponible"}</p>
+        <p className="card-date">
+          Sortie le :{" "}
+          {show.first_air_date
+            ? getTime(show.first_air_date)
+            : "date non disponible"}
+        </p>
         <div className="card-rating-container">
           <p className="card-rating">
             {(Math.round(show.vote_average * 10) / 10).toFixed(1)}/10
@@ -94,18 +94,38 @@ const Card = ({ show, deleteBookmark }) => {
           <i className="fa-sharp fa-solid fa-star"></i>
         </div>
         <ul className="card-genres">
-          {genres && genres.map(genre => <li key={genre}>{genre}</li>)}
+          {genres && genres.map((genre) => <li key={genre}>{genre}</li>)}
         </ul>
-        {show.overview ? <h3 className="card-synopsis-title">Synopsis</h3> : ""} 
-        {/* <p className="card-synopsis">{show.overview.length < 250 ? show.overview : show.overview.slice(0,250)+"..."}</p> */}
-        {/* {show.overview ? <p className="card-synopsis">{show.overview.length < 250 ? show.overview : show.overview.slice(0,250)+"..."}</p> : ""} */}
-        {/* {show.overview ? {show.overview.length < 250 ? show.overview : show.overview.slice(0,250)+"..."}  : ""} */}
-        {show.overview ? show.overview.length < 200 ? <p className="card-synopsis">{show.overview}</p> : <p className="card-synopsis">{show.overview.slice(0,200)+"... "}<button className="card-synopsis-btn-showmore" onClick={() => setShowModal(true)}>Lire la suite</button></p> : ""}
+        {show.overview ? <h3 className="card-synopsis-title">Synopsis</h3> : ""}
+        {show.overview ? (
+          show.overview.length < 200 ? (
+            <p className="card-synopsis">{show.overview}</p>
+          ) : (
+            <p className="card-synopsis">
+              {show.overview.slice(0, 200) + "... "}
+              <button
+                className="card-synopsis-btn-showmore"
+                onClick={() => setShowModal(true)}
+              >
+                Lire la suite
+              </button>
+            </p>
+          )
+        ) : (
+          ""
+        )}
       </div>
-      <button onClick={() => handleBookmark(show.id)} className={(isBookmarked ? "card-btn btn bookmarked" : "card-btn btn")}>
+      <button
+        onClick={() => handleBookmark(show.id)}
+        className={isBookmarked ? "card-btn btn bookmarked" : "card-btn btn"}
+      >
         {isBookmarked ? "Retirer des favoris" : "Ajouter aux favoris"}
       </button>
-      <Modal onClose={() => setShowModal(false)} showModal={showModal} show={show} />
+      <Modal
+        onClose={() => setShowModal(false)}
+        showModal={showModal}
+        show={show}
+      />
     </li>
   );
 };

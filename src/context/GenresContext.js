@@ -9,7 +9,7 @@ const GenresContextProvider = (props) => {
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/genre/tv/list?api_key=ee5257db9bf57231392a184bbd8e9562&language=fr-FR`
+        `https://api.themoviedb.org/3/genre/tv/list?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR`
       )
       .then((res) => {
         setListAllGenres(res.data.genres);

@@ -1,16 +1,16 @@
 .notfound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .notfound-title {
         font-size: 22vw;
         margin: 1vh 0 0;
-        text-align: center;
     }
 
     .notfound-text {
         font-size: 3vw;
         font-weight: 600;
-        text-align: center;
-        // margin: 5rem 0;
 
         @include mobile {
             font-size: 0.8rem;
@@ -20,10 +20,9 @@
     }
 
     .notfound-btn {
-        display: block;
         width: 250px;
-        margin: 0 auto;
-        margin-top: 50px;
+        margin: 50px auto 0;
+        text-align: center;
 
         border: 0;
         border-radius: 3px;
@@ -31,13 +30,16 @@
         color: $color-btn-text;
         font-size: 1.1rem;
         font-weight: 600;
-        cursor: pointer;
         padding: 16px 0px;
         transition: background-color 0.2s ease-in-out;
 
         &:hover {
             background-color: $white;
             transition: background-color 0.2s ease-in-out;
+        }
+
+        i {
+            margin-left: 5px;
         }
 
         @include mobile {
