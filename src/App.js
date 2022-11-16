@@ -13,7 +13,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
           <Route path="/404" element={<NotFound />} />
-          <Route path='*' element={<Navigate replace to='/404'/>} />
+          {/* <Route path='*' element={<Navigate replace to='/404'/>} /> */}
         </Routes>
       </BrowserRouter>
     </GenresContextProvider>
