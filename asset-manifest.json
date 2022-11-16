@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react-tv/static/css/main.893a7e1f.css",
-    "main.js": "/react-tv/static/js/main.07cf2218.js",
+    "main.js": "/react-tv/static/js/main.c69fa3bc.js",
     "index.html": "/react-tv/index.html",
     "main.893a7e1f.css.map": "/react-tv/static/css/main.893a7e1f.css.map",
-    "main.07cf2218.js.map": "/react-tv/static/js/main.07cf2218.js.map"
+    "main.c69fa3bc.js.map": "/react-tv/static/js/main.c69fa3bc.js.map"
   },
   "entrypoints": [
     "static/css/main.893a7e1f.css",
-    "static/js/main.07cf2218.js"
+    "static/js/main.c69fa3bc.js"
   ]
 }
