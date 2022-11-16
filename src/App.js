@@ -7,12 +7,12 @@ import GenresContextProvider from './context/GenresContext'
 
 const App = () => {
   return (
-    <GenresContextProvider>
+    <GenresContextProvider basename="/react-tv">
       <BrowserRouter>
         <Routes>
-          <Route path="/react-tv/" element={<Home />} />
-          <Route path="/react-tv/bookmarks" element={<Bookmarks />} />
-          <Route path="/react-tv/*" element={<NotFound />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/bookmarks" element={<Bookmarks />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </GenresContextProvider>
