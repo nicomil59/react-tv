@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Bookmarks from './pages/Bookmarks'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
@@ -12,7 +12,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="/404" element={<NotFound />} />
+          <Route path='*' element={<Navigate replace to='/404'/>} />
         </Routes>
       </BrowserRouter>
     </GenresContextProvider>
