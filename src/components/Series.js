@@ -18,11 +18,13 @@ const Series = () => {
       : `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_API_KEY}&query=${search}&language=fr-FR`;
 
   const sortSeries = (series, sortOrder) => {
-    if (sortOrder === "top") {
-      return series.sort((a, b) => b.vote_average - a.vote_average);
-    } else if (sortOrder === "flop") {
-      return series.sort((a, b) => a.vote_average - b.vote_average);
-    }
+    if (!series || series.length === 0) return [];
+
+    return [...series].sort((a, b) =>
+      sortOrder === "top"
+        ? b.vote_average - a.vote_average
+        : a.vote_average - b.vote_average
+    );
   };
 
   useEffect(() => {
