@@ -8,7 +8,7 @@ const Series = () => {
   const [series, setSeries] = useState([]);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
-  const [sortOrder, setSortOrder] = useState(null);  
+  const [sortOrder, setSortOrder] = useState(null);
 
   const debouncedSearch = useCustomDebounce(search, 500);
 
@@ -26,21 +26,27 @@ const Series = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(url)
-      .then((res) => {
-        if (sortOrder === null) {
-          setSeries(res.data.results.slice(0,16));
-        } else {
-          setSeries(sortSeries(res.data.results, sortOrder));
-        }
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  }, [url, sortOrder]);
+    const fetchData = async () => {
+      try {
+        setError(null); // Réinitialise l'erreur à chaque requête
+        const res = await axios.get(url);
 
-  // if (error) return `Error: ${error.message}`;
+        if (!res.data || !res.data.results) {
+          throw new Error("Aucune donnée reçue de l'API.");
+        }
+
+        setSeries(
+          sortOrder === null
+            ? res.data.results.slice(0, 16)
+            : sortSeries(res.data.results, sortOrder)
+        );
+      } catch (err) {
+        setError(err);
+      }
+    };
+
+    fetchData();
+  }, [url, sortOrder]);
 
   const handleSearch = (term) => {
     console.log("term", term);
@@ -60,7 +66,9 @@ const Series = () => {
         </button>
       </div>
       {error ? (
-        <p>Error: {error.message}</p>
+        <div className="error-message">
+          <p>⚠️ Une erreur s'est produite : {error.message}</p>
+        </div>
       ) : (
         <ul className="results" style={{ listStyleType: "none" }}>
           {series.length > 0 ? (
