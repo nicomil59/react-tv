@@ -60,9 +60,18 @@ const Series = () => {
     setSortOrder(null);
   };
 
+  const resetSearch = () => {
+    setSearch("");
+    setSortOrder(null);
+  };
+
   return (
     <div className="series">
-      <Search placeholder="Entrez une série" getSearch={handleSearch} />
+      <Search
+        placeholder="Entrez une série"
+        getSearch={handleSearch}
+        value={search}
+      />
       <div className="buttons-sort">
         <button onClick={() => setSortOrder("top")} className="btn btn-top">
           Top <i className="fa-solid fa-arrow-up"></i>
@@ -71,20 +80,27 @@ const Series = () => {
           Flop <i className="fa-sharp fa-solid fa-arrow-down"></i>
         </button>
       </div>
+
       {loading ? (
         <p className="loader">🔄 Chargement des séries...</p>
       ) : error ? (
         <div className="error-message">
           <p>⚠️ Une erreur s'est produite : {error.message}</p>
         </div>
-      ) : (
+      ) : series.length > 0 ? (
         <ul className="results" style={{ listStyleType: "none" }}>
-          {series.length > 0 ? (
-            series.map((item) => <Card key={item.id} show={item} />)
-          ) : (
-            <li>Aucun résultat trouvé.</li>
-          )}
+          {series.map((item) => (
+            <Card key={item.id} show={item} />
+          ))}
         </ul>
+      ) : (
+        <div className="no-results">
+          <p>❌ Aucun résultat trouvé pour "{search}".</p>
+          <p>Essayez une autre recherche ou réinitialisez :</p>
+          <button onClick={resetSearch} className="btn btn-reset">
+            🔄 Réinitialiser
+          </button>
+        </div>
       )}
     </div>
   );
