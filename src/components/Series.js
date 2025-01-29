@@ -9,6 +9,7 @@ const Series = () => {
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState(null);
+  const [loading, setLoading] = useState(false); // Ajout de l'état de chargement
 
   const debouncedSearch = useCustomDebounce(search, 500);
 
@@ -30,6 +31,7 @@ const Series = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true); // Démarrage du chargement
         setError(null); // Réinitialise l'erreur à chaque requête
         const res = await axios.get(url);
 
@@ -44,6 +46,8 @@ const Series = () => {
         );
       } catch (err) {
         setError(err);
+      } finally {
+        setLoading(false); // Fin du chargement
       }
     };
 
@@ -67,7 +71,9 @@ const Series = () => {
           Flop <i className="fa-sharp fa-solid fa-arrow-down"></i>
         </button>
       </div>
-      {error ? (
+      {loading ? (
+        <p className="loader">🔄 Chargement des séries...</p>
+      ) : error ? (
         <div className="error-message">
           <p>⚠️ Une erreur s'est produite : {error.message}</p>
         </div>
