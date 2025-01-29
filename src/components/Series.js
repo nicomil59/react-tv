@@ -11,7 +11,7 @@ const Series = () => {
 
   const url =
     search === ""
-      ? `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=fr-FR&page=1`
+      ? `https://api.themoviedb.org/3/trending/tv/day?language=fr-FR&api_key=${process.env.REACT_APP_API_KEY}`
       : `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_API_KEY}&query=${search}&language=fr-FR`;
 
   const sortSeries = (series, sortOrder) => {
@@ -27,7 +27,7 @@ const Series = () => {
       .get(url)
       .then((res) => {
         if (sortOrder === null) {
-          setSeries(res.data.results);
+          setSeries(res.data.results.slice(0,16));
         } else {
           setSeries(sortSeries(res.data.results, sortOrder));
         }
