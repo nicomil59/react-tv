@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./Card";
 import Search from "./Search";
+import useCustomDebounce from "../hooks/useCustomDebounce";
 
 const Series = () => {
   const [series, setSeries] = useState([]);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
-  const [sortOrder, setSortOrder] = useState(null);
+  const [sortOrder, setSortOrder] = useState(null);  
+
+  const debouncedSearch = useCustomDebounce(search, 500);
 
   const url =
-    search === ""
+    debouncedSearch === ""
       ? `https://api.themoviedb.org/3/trending/tv/day?language=fr-FR&api_key=${process.env.REACT_APP_API_KEY}`
       : `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_API_KEY}&query=${search}&language=fr-FR`;
 
@@ -40,7 +43,7 @@ const Series = () => {
   // if (error) return `Error: ${error.message}`;
 
   const handleSearch = (term) => {
-    // console.log("term", term);
+    console.log("term", term);
     setSearch(term);
     setSortOrder(null);
   };
