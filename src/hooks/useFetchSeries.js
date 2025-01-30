@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const useFetchSeries = (search, sortOrder, debounceDelay = 500) => {
+const useFetchSeries = (search, sortOrder) => {
   const [series, setSeries] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -26,15 +26,18 @@ const useFetchSeries = (search, sortOrder, debounceDelay = 500) => {
           throw new Error("Aucune donnée reçue de l'API.");
         }
 
-        setSeries(
-          sortOrder
-            ? [...res.data.results].sort((a, b) =>
-                sortOrder === "top"
-                  ? b.vote_average - a.vote_average
-                  : a.vote_average - b.vote_average
-              )
-            : res.data.results.slice(0, 16)
-        );
+        let fetchedSeries = res.data.results.slice(0, 16);
+
+        if (sortOrder !== "none") {
+          fetchedSeries = [...fetchedSeries].sort((a, b) =>
+            sortOrder === "top"
+              ? b.vote_average - a.vote_average
+              : a.vote_average - b.vote_average
+          );
+        }
+
+        setSeries(fetchedSeries);
+
       } catch (err) {
         setError(err);
       } finally {

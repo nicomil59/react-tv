@@ -6,19 +6,19 @@ import useFetchSeries from "../hooks/useFetchSeries";
 
 const Series = () => {
   const [search, setSearch] = useState("");
-  const [sortOrder, setSortOrder] = useState(null);
+  const [sortOrder, setSortOrder] = useState("none");
   const debouncedSearch = useCustomDebounce(search, 500);
 
   const { series, error, loading } = useFetchSeries(debouncedSearch, sortOrder);
 
   const handleSearch = (term) => {
     setSearch(term);
-    setSortOrder(null);
+    setSortOrder("none");
   };
 
   const resetSearch = () => {
     setSearch("");
-    setSortOrder(null);
+    setSortOrder("none");
   };
 
   return (
