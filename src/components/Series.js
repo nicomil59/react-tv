@@ -1,61 +1,17 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import Card from "./Card";
 import Search from "./Search";
 import useCustomDebounce from "../hooks/useCustomDebounce";
+import useFetchSeries from "../hooks/useFetchSeries"; 
 
 const Series = () => {
-  const [series, setSeries] = useState([]);
-  const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState(null);
-  const [loading, setLoading] = useState(false); // Ajout de l'état de chargement
-
   const debouncedSearch = useCustomDebounce(search, 500);
 
-  const url =
-    debouncedSearch === ""
-      ? `https://api.themoviedb.org/3/trending/tv/day?language=fr-FR&api_key=${process.env.REACT_APP_API_KEY}`
-      : `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_API_KEY}&query=${search}&language=fr-FR`;
-
-  const sortSeries = (series, sortOrder) => {
-    if (!series || series.length === 0) return [];
-
-    return [...series].sort((a, b) =>
-      sortOrder === "top"
-        ? b.vote_average - a.vote_average
-        : a.vote_average - b.vote_average
-    );
-  };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true); // Démarrage du chargement
-        setError(null); // Réinitialise l'erreur à chaque requête
-        const res = await axios.get(url);
-
-        if (!res.data || !res.data.results) {
-          throw new Error("Aucune donnée reçue de l'API.");
-        }
-
-        setSeries(
-          sortOrder === null
-            ? res.data.results.slice(0, 16)
-            : sortSeries(res.data.results, sortOrder)
-        );
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false); // Fin du chargement
-      }
-    };
-
-    fetchData();
-  }, [url, sortOrder]);
+  const { series, error, loading } = useFetchSeries(debouncedSearch, sortOrder);
 
   const handleSearch = (term) => {
-    console.log("term", term);
     setSearch(term);
     setSortOrder(null);
   };
