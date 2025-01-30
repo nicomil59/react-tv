@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { getSeriesApiUrl } from "../services/api";
 
 const useFetchSeries = (search, sortOrder) => {
   const [series, setSeries] = useState([]);
@@ -11,13 +12,7 @@ const useFetchSeries = (search, sortOrder) => {
       setLoading(true);
       setError(null);
 
-      const API_KEY = process.env.REACT_APP_API_KEY;
-      const BASE_URL = "https://api.themoviedb.org/3";
-      const endpoint = search
-        ? `/search/tv?query=${encodeURIComponent(search)}&language=fr-FR`
-        : `/trending/tv/day?language=fr-FR`;
-
-      const url = `${BASE_URL}${endpoint}&api_key=${API_KEY}`;
+      const url = getSeriesApiUrl(search);
 
       try {
         const res = await axios.get(url);
@@ -27,7 +22,7 @@ const useFetchSeries = (search, sortOrder) => {
         }
 
         setSeries(res.data.results.slice(0, 16));
-        
+
       } catch (err) {
         setError(err);
       } finally {
