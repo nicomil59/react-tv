@@ -17,3 +17,4 @@ Base de données : themoviedb.org
 ## Versions
 
 25/10/2022 : déploiement de la première version de l'app.
+30/01/2025 : mise à jour du site (optimisation du code).
