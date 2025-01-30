@@ -26,18 +26,8 @@ const useFetchSeries = (search, sortOrder) => {
           throw new Error("Aucune donnée reçue de l'API.");
         }
 
-        let fetchedSeries = res.data.results.slice(0, 16);
-
-        if (sortOrder !== "none") {
-          fetchedSeries = [...fetchedSeries].sort((a, b) =>
-            sortOrder === "top"
-              ? b.vote_average - a.vote_average
-              : a.vote_average - b.vote_average
-          );
-        }
-
-        setSeries(fetchedSeries);
-
+        setSeries(res.data.results.slice(0, 16));
+        
       } catch (err) {
         setError(err);
       } finally {

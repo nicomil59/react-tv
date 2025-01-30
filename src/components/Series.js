@@ -3,6 +3,7 @@ import Card from "./Card";
 import Search from "./Search";
 import useCustomDebounce from "../hooks/useCustomDebounce";
 import useFetchSeries from "../hooks/useFetchSeries"; 
+import useSortedSeries from "../hooks/useSortedSeries";
 
 const Series = () => {
   const [search, setSearch] = useState("");
@@ -10,6 +11,7 @@ const Series = () => {
   const debouncedSearch = useCustomDebounce(search, 500);
 
   const { series, error, loading } = useFetchSeries(debouncedSearch, sortOrder);
+  const sortedSeries = useSortedSeries(series, sortOrder);
 
   const handleSearch = (term) => {
     setSearch(term);
@@ -45,7 +47,7 @@ const Series = () => {
         </div>
       ) : series.length > 0 ? (
         <ul className="results" style={{ listStyleType: "none" }}>
-          {series.map((item) => (
+          {sortedSeries.map((item) => (
             <Card key={item.id} show={item} />
           ))}
         </ul>
